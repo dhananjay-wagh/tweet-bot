@@ -41,12 +41,15 @@ def send_telegram(text):
     response = requests.post(url, json=payload).json()
     return response
 
-def job():
-    result_tweet = generate_tweet()
-    send_telegram(result_tweet)
+result = generate_tweet()
+send_telegram(result)
 
-scheduler = BlockingScheduler()
-scheduler.add_job(job, 'interval', hours=6)
+# def job():
+#     result_tweet = generate_tweet()
+#     send_telegram(result_tweet)
 
-job()
-scheduler.start()
+# scheduler = BlockingScheduler()
+# scheduler.add_job(job, 'interval', hours=6)
+
+# job()
+# scheduler.start()
