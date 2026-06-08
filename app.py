@@ -46,7 +46,7 @@ def job():
     send_telegram(result_tweet)
 
 scheduler = BlockingScheduler()
-scheduler.add_job(job, 'interval', minutes=2)
+scheduler.add_job(job, 'interval', hours=6)
 
 job()
 scheduler.start()
