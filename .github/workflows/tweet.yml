@@ -1,0 +1,21 @@
+name: Tweet Bot
+
+on:
+    schedule:
+        - cron: '0 */6 * * *'
+    workflow_dispatch:
+
+jobs:
+    tweet:
+        runs: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
+            - uses: actions/setup-python@v4
+              with:
+                python-version: '3x'
+            - run: pip install -r requirements.txt
+            - run: python app.py
+              env:
+                  GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+                  TELEGRAM_TOKEN: ${{secrets.TELEGRAM_TOKEN}}
+                  CHAT_ID: ${{ secrets.CHAT_ID }}
